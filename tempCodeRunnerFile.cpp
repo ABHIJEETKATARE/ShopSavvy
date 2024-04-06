@@ -1,0 +1,1 @@
+class Solution { public: int fun(int k,int maxi,int sum) { if(k<=sum) return 0; int x=1+fun(k,maxi+1,sum+1); int y=1+fun(k,maxi,sum+maxi); return min(x,y); } int minOperations(int k) { int sum=1; return fun(k,1,sum); } };
