@@ -1,4 +1,4 @@
-# amazon_tutorial
+# ShopSavvy
 
 A new Flutter project.
 
