@@ -4,8 +4,9 @@ import 'package:amazon_tutorial/colors/global_variables.dart';
 import 'package:amazon_tutorial/http_error_handling/error_handling.dart';
 import 'package:amazon_tutorial/models/user_model.dart';
 import 'package:amazon_tutorial/providers/user_provider.dart';
+import 'package:amazon_tutorial/reusable/bottom_bar.dart';
 import 'package:amazon_tutorial/reusable/snackbar.dart';
-import 'package:amazon_tutorial/screens/homescreen/homescreen.dart';
+import 'package:amazon_tutorial/features/home/home_screen/homescreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -52,15 +53,7 @@ class authService {
       required BuildContext context}) async {
     try {
       http.Response response = await http.post(Uri.parse("$uri/api/signIn"),
-          body: User(
-                  name: "",
-                  email: email,
-                  password: password,
-                  id: "",
-                  type: "",
-                  address: "",
-                  token: "")
-              .toJson(),
+          body: jsonEncode({'email': email, 'password': password}),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8'
           });
@@ -73,7 +66,7 @@ class authService {
                 .setUser(response.body);
             await pref.setString(
                 'x-auth-token', jsonDecode(response.body)["token"]);
-            Navigator.of(context).pushNamed(homeScreen.routeName);
+            Navigator.of(context).pushNamed(BottomBarState.routeName);
           });
     } catch (e) {
       snackbar(context: context, message: e.toString());

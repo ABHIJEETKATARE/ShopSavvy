@@ -1,11 +1,11 @@
 import 'dart:async';
-
+import 'package:amazon_tutorial/features/admin/screens/admin_screen.dart';
 import 'package:amazon_tutorial/generate_routes.dart';
+import 'package:amazon_tutorial/models/user_model.dart';
 import 'package:amazon_tutorial/providers/user_provider.dart';
 import 'package:amazon_tutorial/reusable/bottom_bar.dart';
-import 'package:amazon_tutorial/screens/auth_screen.dart';
-import 'package:amazon_tutorial/screens/homescreen/homescreen.dart';
-import 'package:amazon_tutorial/self%20testing/test.dart';
+import 'package:amazon_tutorial/features/auth/auth_screen.dart';
+import 'package:amazon_tutorial/features/home/home_screen/homescreen.dart';
 import 'package:amazon_tutorial/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +32,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState;
-    test(context);
     obj.getToken(context);
   }
 
@@ -62,6 +61,8 @@ class _abhi extends State<abhi> {
   Widget build(BuildContext context) {
     return Provider.of<UserProvider>(context).user.token.isEmpty
         ? authScreen()
-        : const BottomBarState();
+        : (Provider.of<UserProvider>(context).user.type != 'user'
+            ? const BottomBarState()
+            : const AdminScreen());
   }
 }
