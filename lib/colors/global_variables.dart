@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-String uri = 'http://192.168.137.1:3000';
-
+//For running locally on your device replace <YOUR_IP> with your IP address
+String uri = 'http://<YOUR_IP>:3000';
 class GlobalVariables {
   // COLORS
   static const appBarGradient = LinearGradient(
