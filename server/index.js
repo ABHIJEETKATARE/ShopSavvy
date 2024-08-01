@@ -1,5 +1,5 @@
 console.log("hello");
-const port=3000;
+const port=process.env.PORT||3000;
 const express=require("express");
 const mongoose = require("mongoose");
 const db="mongodb+srv://ABHIJEET:854286@cluster0.vrb0u6b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
